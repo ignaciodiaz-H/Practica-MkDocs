@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: Cosas IAW
+nav:
+  - Home: index.md
+  - Practica-5.2: Practica-5.2.md
+  - Practica-5.4: Practica-5.4.md
+  - Contact: contact.md
