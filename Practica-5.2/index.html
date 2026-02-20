@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Practica-5.2 - Cosas IAW</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cosas IAW</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Practica-5.2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../Practica-5.4/" class="nav-link">Practica-5.4</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../contact.md" class="nav-link">Contact</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Practica-5.4/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#practica-52-docker-con-wordpress" class="nav-link">Practica-5.2 Docker con Wordpress</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#redes" class="nav-link">Redes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mysql" class="nav-link">Mysql</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#wordpress" class="nav-link">Wordpress</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#phpmyadmin" class="nav-link">PhpmyAdmin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#https-portal" class="nav-link">Https-Portal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pruebas-visuales" class="nav-link">Pruebas Visuales</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="practica-52-docker-con-wordpress">Practica-5.2 Docker con Wordpress</h1>
+<ul>
+<li>Esta practica consiste en levantar varios contenedores con la finalidad de obtner un Wordpress certificado por LetsEncrypt, para esto necesitamos el contendor de Wordpress que usaremos una imagen de bitnami, mysql que sera la base de datos de wordpress, phpmyadmin para poder acceder a la base de datos y por ultimo el https-portal que es el encargado de hablar con los contenedores mediante http y el aplicarle los certificados ssl para asi establecer una conexion segura con ellos mediante https, empezaremos viendo nuestro docker-compose.yml y que hace cada cosa.</li>
+</ul>
+<h2 id="redes">Redes</h2>
+<ul>
+<li>Lo primeor vamos a definir dos redes para separar la comunicacion de los contenedores y asi aislar la base de datos para que esta solo se comunique con el contendor de wordpress, esta sera la red <strong>backend</strong> y los demas estaran en la frontend que seran los que salgan a la red por el https-portal.</li>
+</ul>
+<pre><code class="language-yml">networks:
+  frontend-network:
+    driver: bridge
+  backend-network:
+    driver: bridge
+</code></pre>
+<h2 id="mysql">Mysql</h2>
+<ul>
+<li>Establecemos el contenedor de mysql que vamos a usar donde le damos mediante nuestro archivo .env las variables necesarias para la creacion del contendor, esto es importante ya que sin estas variables no se creara el contenedor de forma correcta, en este caso veremos un ejemplo de las variables que hemos puesto en el contenedor de como deberian de estar en nuestro .env, y es importante como podemos observar la red a la que esta conectado este contenedor la cual es la backend y solo esta.</li>
+</ul>
+<pre><code class="language-yml"># Configuración Base de Datos
+MYSQL_ROOT_PASSWORD=password_maestro
+MYSQL_DATABASE=bitnami_wordpress
+MYSQL_USER=bn_wordpress
+MYSQL_PASSWORD=bitnami_password
+</code></pre>
+<ul>
+<li>Con esto definido ya tendriamos listo nuestro contenedor para que funcione usando la estrucutra siguiente.</li>
+</ul>
+<pre><code class="language-yml">mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    env_file: .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - backend-network
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+</code></pre>
+<h2 id="wordpress">Wordpress</h2>
+<ul>
+<li>Nuestro Wordprees, el gestor de contenidos que tenemos que desplegar para esta practica, hemos usado la imagen de bitnami para que sea el proceso mas sencillo, le hemos asignado que depedene del contenedor mysql para funcionar, le importaremos las variables de nuestro .env, ademas de que lo conectaremos a las 2 redes ya que este tanto tiene que mandar informacion fuera de la maquina mediante el https-portal y tiene que comunicarse con la base de datos en el backend ademas de que le creamos unos volumenes para que se aloje la pagina web.</li>
+</ul>
+<pre><code class="language-yml"># Configuración WordPress
+WORDPRESS_BLOG_NAME=&quot;IDH blog&quot;
+WORDPRESS_DATABASE_HOST=mysql
+WORDPRESS_DATABASE_PORT_NUMBER=3306
+WORDPRESS_DATABASE_USER=bn_wordpress
+WORDPRESS_DATABASE_PASSWORD=bitnami_password
+WORDPRESS_DATABASE_NAME=bitnami_wordpress
+WORDPRESS_EMAIL=user@example.com
+</code></pre>
+<pre><code class="language-yml">wordpress:
+    image: bitnami/wordpress:latest
+    container_name: wordpress
+    restart: always
+    depends_on:
+      - mysql
+    env_file: .env
+    networks:
+      - frontend-network
+      - backend-network
+    volumes:
+      - ./wordpress_data:/bitnami/wordpress
+</code></pre>
+<h2 id="phpmyadmin">PhpmyAdmin</h2>
+<ul>
+<li>Con este contenedor podremos monitorizar las bases de datos que tengamos instalado en nuestro mysql, para ello usamos el siguiente fragmento para crearlo, este esta comunicado tanto como el frontend y el bakcend para tener acceso a la base de datos.</li>
+</ul>
+<pre><code class="language-yml"> phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      - PMA_HOST=mysql
+    networks:
+      - frontend-network
+      - backend-network
+    ports:
+      - &quot;8081:80&quot;
+</code></pre>
+<h2 id="https-portal">Https-Portal</h2>
+<ul>
+<li>El encargado de aplciar ese candadito verde a nuestro wordpres, este es hace de intermediario hablando con el wordpress en http y sacando la comunicacion al exterior mediante https, a diferencia de otros este solo esta conectado a la red frontend, y desde ahi es de donde realiza su trabajo para eso usamos el siguiente fragmento de codigo, y la unica variable que cargamos desde nuestro .env es nuestro dominio que podemos usarlo como variable como se ve en el ejemplo o podemos cargarlo directamante escribiendolo a mano.</li>
+</ul>
+<pre><code class="language-yml">DOMAIN=practicaiawonline.zapto.org
+</code></pre>
+<pre><code class="language-yml">  https-portal:
+    image: steveltn/https-portal:1
+    container_name: https-portal
+    restart: always
+    depends_on:
+      - wordpress
+    ports:
+      - '80:80'
+      - '443:443'
+    env_file: .env
+    environment:
+      DOMAINS: '${DOMAIN} -&gt; http://wordpress:8080'
+      STAGE: 'production'
+    networks:
+      - frontend-network
+</code></pre>
+<h2 id="_1"></h2>
+<ul>
+<li>Con todo esto es suficiente para poder levnatar nuestro contenedor usando un <strong>docker compose up -d</strong> y poner a correr todos los servicios, ademas podemos echar un vistazo al archivo completo si fuera necesario.</li>
+</ul>
+<p><a href="docker-compose.yml">Archivo doceker completo</a>.</p>
+<h2 id="pruebas-visuales">Pruebas Visuales</h2>
+<p><img alt="" src="img/1.png" /><br>
+<img alt="" src="img/2.png" /><br>
+<img alt="" src="img/3.png" /><br>
+<img alt="" src="img/4.png" /><br></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
